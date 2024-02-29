@@ -5,6 +5,7 @@ from django.core.validators import  MinValueValidator
 class User(models.Model):
     name = models.CharField(max_length = 100)
     username = models.CharField(max_length = 100,primary_key = True)
+    email = models.CharField(max_length = 100,null=True)
     password = models.CharField(max_length = 100)
     confirm_password = models.CharField(max_length = 100,null = True)
     address = models.CharField(max_length = 500,null = True)
