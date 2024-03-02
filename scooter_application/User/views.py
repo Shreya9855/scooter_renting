@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from .models import User
 from .forms import signUpForm
+from django.contrib.auth.hashers import make_password
 
 # Create your views here.
 def user_signup(request):
@@ -15,7 +16,17 @@ def user_signup(request):
             password = form.cleaned_data('password')
             confirm_password = form.cleaned_data('confirm_password')
             address = form.cleaned_data('address')
-            form.save()
-
+            if password == confirm_password:
+                encrypt_password = make_password(password)
+                user_details =  User(
+                    name = name  ,
+                    username = username  ,
+                    email = email  ,
+                    age = age  ,
+                    password = encrypt_password  ,
+                    confirm_password = '########'  ,
+                    address = address  ,
+                )
+                user_details.save()
     return HttpResponse("This is sign up page")
 # return render(request,'<url'>,{object})
