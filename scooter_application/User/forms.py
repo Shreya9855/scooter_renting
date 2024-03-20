@@ -19,3 +19,12 @@ class signUpForm(forms.Form):
             raise ValidationError("Passwords do not match")
 
         return cleaned_data
+    
+class logInForm(forms.Form):
+    username = forms.CharField(max_length=100)
+    password = forms.CharField(widget=forms.PasswordInput())
+
+    def clean(self):
+        cleaned_data = super().clean()
+        return cleaned_data
+
