@@ -35,7 +35,7 @@ def user_signup(request):
                 form.add_error('confirm_password', "Passwords do not match")
     else:
         form = signUpForm()
-    return render(request, "user/sign_up.html", {'form': form})
+    return render(request, "sign_up.html", {'form': form})
 
 def user_login(request):
     if request.method == "POST":
@@ -50,9 +50,9 @@ def user_login(request):
                 hashed_password = user.password
                 if check_password(password, hashed_password):
                     print("logged in")
-                    return render(request, "user/sign_up.html")
-        return render(request, "user/login.html")
+                    return render(request, "sign_up.html")
+        return render(request, "login.html")
     else:
         form = logInForm()  
         
-    return render(request, "user/login.html")
+    return render(request, "login.html")
