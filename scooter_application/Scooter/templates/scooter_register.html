@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block content %}
+<hr>
+<div class="container">
+  <h3 style="padding-bottom: 20px;">Register your vehicle here</h3>
+  <form  method="post" enctype='multipart/form-data'>
+    {% csrf_token %}
+  <div class="row g-3 align-items-center" style="padding-bottom: 20px;">
+    <div class="col-auto">
+      <label for="inputModel" class="col-form-label">Model</label>
+    </div>
+    <div class="col-auto">
+      <input type="text" id="inputModel" class="form-control" name="model">
+    </div>
+    <div class="col-auto">
+      <span id="HelpInline" class="form-text">
+        Model of the vehicle!!
+      </span>
+    </div>
+  </div>
+
+  <div class="row g-3 align-items-center">
+    <div class="col-auto">
+      <label for="inputModel" class="col-form-label">Image</label>
+    </div>
+    <div class="col-auto">
+      <div class="input-group mb-3">
+        <input type="file" class="form-control" id="inputGroupFile02" name="image">
+        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+      </div>
+    </div>
+    <div class="col-auto">
+      <span id="HelpInline" class="form-text">
+        Image of the vehicle!!
+      </span>
+  </div>
+  </div>
+
+  <div class="row g-3 align-items-center" style="padding-bottom: 20px;">
+    <div class="col-auto">
+      <label for="inputColor" class="col-form-label">Color</label>
+    </div>
+    <div class="col-auto">
+      <input type="color" id="inputColor" class="form-control" name="color"  value="#ff0000" style="margin: 10px;"> 
+    </div>
+    <div class="col-auto">
+      <span id="HelpInline" class="form-text">
+        Color of the vehicle!!
+      </span>
+    </div>
+  </div>
+
+  <div class="row g-3 align-items-center" style="padding-bottom: 20px;">
+    <div class="col-auto">
+      <label for="input_rate_per_hour" class="col-form-label">Rate per hour</label>
+    </div>
+    <div class="col-auto">
+      <input type="number" step="any" id="input_rate_per_hour" class="form-control" name="rate_per_hour"> 
+    </div>
+    <div class="col-auto">
+      <span id="HelpInline" class="form-text">
+        Rate per hour for the vehicle!!
+      </span>
+    </div>
+  </div>
+
+  <div class="row g-3 align-items-center" style="padding-bottom: 20px;">
+    <div class="col-auto">
+      <label for="input_start_time" class="col-form-label">Start time</label>
+    </div>
+    <div class="col-auto">
+      <input type="time" id="input_start_time" class="form-control" name="start_time" value="11:11"> 
+    </div>
+    <div class="col-auto">
+      <span id="HelpInline" class="form-text">
+        Start time for the rent!!
+      </span>
+    </div>
+  </div>
+
+  <div class="row g-3 align-items-center" style="padding-bottom: 20px;">
+    <div class="col-auto">
+      <label for="input_end_time" class="col-form-label">End time</label>
+    </div>
+    <div class="col-auto">
+      <input type="time" id="input_end_time" class="form-control" name="end_time" value="11:30"> 
+    </div>
+    <div class="col-auto">
+      <span id="HelpInline" class="form-text">
+        
+        End time for the rent!!
+      </span>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Register scooter</button>
+  </form>
+</div>
+{% endblock content %}

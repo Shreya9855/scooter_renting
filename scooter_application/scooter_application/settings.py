@@ -59,7 +59,8 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             os.path.join(BASE_DIR, 'scooter_application/templates'),
-            os.path.join(BASE_DIR, 'User/templates')
+            os.path.join(BASE_DIR, 'User/templates'),
+            os.path.join(BASE_DIR, 'Scooter/templates')
             ],
         'APP_DIRS': True,
         'OPTIONS': {

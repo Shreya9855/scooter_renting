@@ -39,7 +39,6 @@ def user_signup(request):
 
 def user_login(request):
     if request.method == "POST":
-        print('post')
         form = logInForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
@@ -50,7 +49,7 @@ def user_login(request):
                 hashed_password = user.password
                 if check_password(password, hashed_password):
                     print("logged in")
-                    return render(request, "sign_up.html")
+                    return render(request, "scooter_renting.html")
         return render(request, "login.html")
     else:
         form = logInForm()  
