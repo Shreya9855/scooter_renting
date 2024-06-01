@@ -36,4 +36,5 @@ def register_scooter(request):
     return render(request, "scooter_register.html", {'form': form})
 
 def scooter_rent(request):
-    return render(request,"scooter_renting.html")
+    scooters = Scooter.objects.all()
+    return render(request,"scooter_renting.html",{'scooters':scooters})

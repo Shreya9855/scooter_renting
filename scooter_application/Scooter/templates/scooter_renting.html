@@ -6,5 +6,24 @@
 </div>
 
 
+    {% for scooter in scooters %} 
+    <div class="container" style="border: 2.5px solid  blanchedalmond; margin-bottom: 5px;">
+        <figure class="figure">
+            <img src="/{{scooter.image}}" class="figure-img img-fluid rounded" alt="...">
+            <figcaption class="figure-caption text-end">Scooter</figcaption>
+        </figure>
+        <p> <b>id :</b> {{scooter.id}} </p>
+        <p> <b>color :</b> <button type="button" class="btn btn-lg btn-primary"  style="background-color:{{scooter.color}};" disabled>   COLOR   </button></p>
+        <p> <b>model :</b> {{scooter.model}} </p>
+        <p> <b>rate_per_hour :</b> ${{scooter.rate_per_hour}} </p>
+        <p> <b>vendor_id :</b> {{scooter.vendor_id}} </p>
+        <p> <b>start_time :</b> {{scooter.start_time}} </p>
+        <p> <b>end_time :</b> {{scooter.end_time}} </p>
+        <p> <b>is_active :</b> {{scooter.is_active}} </p>
+        <p> <b>user_id :</b> {{scooter.user_id.name}} </p>
+        <br style="margin:5px;">
+    </div>
+
+    {% endfor %}
 
 {% endblock content %}
