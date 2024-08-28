@@ -37,6 +37,7 @@
     <div class="container">
       <header>
         <h1>Hire a scooter</h1>
+        
 
         <ul class="nav justify-content-end">
             <!-- <li class="nav-item">
@@ -45,18 +46,29 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Link</a>
             </li> -->
+            {% if not request.user.is_authenticated %}
             <li class="nav-item">
               <a class="nav-link" href="{% block login_url %}{% url 'login' %}{% endblock %}">Login</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{% block signup_url %}{% url 'signup' %}{% endblock %}">Signup</a>
             </li>
+            {% endif %}
             <li class="nav-item">
               <a class="nav-link" href="{% block contact %}{% url 'contact' %}{% endblock %}">Contact</a>
             </li>
+            {% if request.user.is_authenticated %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+              <form id="logout-form" action="{% url 'logout' %}" method="post" style="display: none;">
+              {% csrf_token %}
+            </form>
+            </li>
+            {% endif %}
           </ul>
           <hr>
         </header>
+        <p>Welcome, {% if user.is_authenticated %} {{ user.name }} {% else %} Guest {% endif %}!</p>
     </div>
     <main>
       {% block content %}

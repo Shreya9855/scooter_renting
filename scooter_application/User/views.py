@@ -1,10 +1,14 @@
 from django.contrib.auth.hashers import make_password,check_password
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login,logout
 from .forms import logInForm, signUpForm
 from .models import User
 # https://pythonguides.com/encrypt-and-decrypt-password-in-django/
 
 def user_signup(request):
+    if request.user.is_authenticated:
+        return redirect('/')
+
     if request.method == "POST":
         form = signUpForm(request.POST)
         if form.is_valid():
@@ -38,20 +42,29 @@ def user_signup(request):
     return render(request, "sign_up.html", {'form': form})
 
 def user_login(request):
+    if request.user.is_authenticated:
+        return redirect('/')
+    
     if request.method == "POST":
         form = logInForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            # check_password(password, hash_password)
-            if User.objects.filter(username=username).exists():
-                user = User.objects.get(username=username)
-                hashed_password = user.password
-                if check_password(password, hashed_password):
-                    print("logged in")
-                    return render(request, "scooter_renting.html")
+            
+            user_authenticate = authenticate(request,username=username,password = password)
+            print(f'user_authenticate: {user_authenticate}')
+            if user_authenticate is not None:
+                print('logged in')
+                print(login(request, user_authenticate, backend=None))
+                return redirect('/')
+            else:
+                form.add_error(None, "Authentication failed")
         return render(request, "login.html")
     else:
         form = logInForm()  
         
-    return render(request, "login.html")
+    return render(request, "login.html", {'form': form})
+
+def user_logout(request):
+    logout(request)
+    return redirect('/')

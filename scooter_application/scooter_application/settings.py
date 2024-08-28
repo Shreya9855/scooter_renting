@@ -52,6 +52,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'User.backends.CustomBackend',  # Path to your custom backend
+    'django.contrib.auth.backends.ModelBackend',  # Keep default backend if needed
+]
+
 ROOT_URLCONF = 'scooter_application.urls'
 
 TEMPLATES = [
@@ -154,3 +159,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'User.User'
